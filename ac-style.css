@@ -13,6 +13,7 @@
     flex-direction: column;
     z-index: 9999;
     animation: slideIn 0.3s ease;
+    overflow: hidden;
 }
 
 @keyframes slideIn {
@@ -34,6 +35,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px; /* SEPARA BOTÓN CERRAR + BOTÓN FINALIZAR */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
@@ -42,6 +44,7 @@
     font-size: 16px;
 }
 
+/* Botón cerrar */
 #ac-close {
     background: rgba(255,255,255,0.2);
     border: none;
@@ -63,12 +66,37 @@
     transform: rotate(90deg);
 }
 
+/* Botón finalizar chat */
+#ac-finish-chat {
+    background: linear-gradient(135deg, #d63638 0%, #b72325 100%);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(214,54,56,0.3);
+}
+
+#ac-finish-chat:hover {
+    background: linear-gradient(135deg, #b72325 0%, #9f1d1f 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(214,54,56,0.4);
+}
+
+#ac-finish-chat:active {
+    transform: translateY(0);
+}
+
+/* Área de mensajes */
 #ac-messages {
     flex: 1;
     padding: 20px;
     overflow-y: auto;
     background: #f5f7fa;
-    background-image: 
+    background-image:
         linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
     background-size: 20px 20px;
@@ -129,6 +157,23 @@
     box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
+/* Aviso de chat cerrado */
+#ac-closed-warning {
+    text-align: center;
+    color: #d63638;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+/* Aviso en ADMIN MODE */
+#ac-modal.ac-admin-mode #ac-closed-warning {
+    margin-top: 20px;
+    font-weight: 600;
+    color: #d63638;
+}
+
+/* Input + enviar */
 #ac-input-wrap {
     display: flex;
     padding: 15px;
@@ -174,7 +219,7 @@
     transform: translateY(0);
 }
 
-/* Botón de abrir chat */
+/* Botón abrir chat */
 #ac-open-chat {
     background: linear-gradient(135deg, #0073aa 0%, #005a87 100%);
     color: white;
@@ -272,7 +317,7 @@
     border: 2px dashed #ddd;
 }
 
-/* ========== ESTILOS PARA DASHBOARD DE ADMINISTRADOR ========== */
+/* ========== ADMIN DASHBOARD ========== */
 
 #ac-admin-dashboard {
     padding: 30px;
@@ -288,7 +333,6 @@
     border-bottom: 2px solid #ddd;
 }
 
-/* Lista de conversaciones del admin */
 .ac-admin-conversations {
     display: grid;
     gap: 15px;
@@ -377,17 +421,18 @@
     background: #005a87;
 }
 
-/* Modal en modo admin */
+/* Modal admin mode */
 #ac-modal.ac-admin-mode {
     width: 600px;
     height: 700px;
+    overflow: hidden; /* CORRECCIÓN */
 }
 
 #ac-modal.ac-admin-mode #ac-header {
     background: linear-gradient(135deg, #0073aa 0%, #005a87 100%);
 }
 
-/* Mensajes en modo admin */
+/* Mensajes admin */
 .ac-admin-msg {
     margin-bottom: 15px;
     padding: 12px;
@@ -412,23 +457,14 @@
 .ac-admin-msg-time {
     font-size: 11px;
     color: #999;
-    font-weight: normal;
 }
 
 .ac-admin-msg-text {
     color: #333;
     font-size: 14px;
-    line-height: 1.5;
 }
 
-#ac-admin-conversations-list p {
-    text-align: center;
-    color: #999;
-    padding: 40px;
-    font-size: 16px;
-}
-
-/* Responsive para móviles */
+/* Responsive */
 @media (max-width: 768px) {
     #ac-modal {
         width: 100%;
@@ -437,16 +473,16 @@
         right: 0;
         border-radius: 0;
     }
-    
+
     #ac-modal.ac-admin-mode {
         width: 100%;
         height: 100%;
     }
-    
+
     #ac-header {
         border-radius: 0;
     }
-    
+
     #ac-admin-dashboard {
         padding: 15px;
     }
